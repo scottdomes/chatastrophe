@@ -1,10 +1,11 @@
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry:  __dirname + "/src/index.js",
+  entry: __dirname + '/src/index.js',
   output: {
-   path: __dirname + "/build",
-   filename: "bundle.js",
+    path: __dirname + '/build',
+    filename: 'bundle.js',
     publicPath: './'
   },
   module: {
@@ -14,7 +15,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015','react'],
+          presets: ['es2015', 'react'],
           plugins: ['react-hot-loader/babel', 'transform-class-properties']
         }
       }
@@ -26,5 +27,21 @@ module.exports = {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-  ],
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: __dirname + '/public/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      }
+    })
+  ]
 };
