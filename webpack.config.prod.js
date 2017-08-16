@@ -21,10 +21,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }
-        ]
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+      },
+      {
+        exclude: [/\.html$/, /\.(js|jsx)$/, /\.css$/, /\.json$/],
+        loader: 'file-loader',
+        options: {
+          name: 'static/media/[name].[ext]'
+        }
       }
     ]
   },
@@ -53,12 +57,12 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        reduce_vars: false,
+        reduce_vars: false
       },
       output: {
-        comments: false,
+        comments: false
       },
-      sourceMap: true,
-    }),
+      sourceMap: true
+    })
   ]
 };
