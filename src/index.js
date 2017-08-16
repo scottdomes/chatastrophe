@@ -1,2 +1,1 @@
-require('./index2.js');
-console.log('hello from index.js!');
+ReactDOM.render(React.createElement('h1', false, 'Hello from React!'), document.getElementById('root'))
