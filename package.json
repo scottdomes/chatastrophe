@@ -5,6 +5,9 @@
   "repository": "git@github.com:scottdomes/chatastrophe.git",
   "author": "YScott Domes <scott@musefind.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "node_modules/.bin/webpack"
+  },
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
