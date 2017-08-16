@@ -6,7 +6,8 @@
   "author": "YScott Domes <scott@musefind.com>",
   "license": "MIT",
   "scripts": {
-    "build": "node_modules/.bin/webpack"
+    "build": "node_modules/.bin/webpack",
+    "start": "node_modules/.bin/webpack-dev-server"
   },
   "dependencies": {
     "react": "^15.6.1",
