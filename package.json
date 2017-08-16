@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:scottdomes/chatastrophe.git",
   "author": "YScott Domes <scott@musefind.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.6.1"
+  }
 }
