@@ -18,6 +18,13 @@ module.exports = {
           presets: ['es2015', 'react'],
           plugins: ['react-hot-loader/babel', 'transform-class-properties']
         }
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" }
+        ]
       }
     ]
   },
@@ -42,6 +49,16 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true
       }
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+        reduce_vars: false,
+      },
+      output: {
+        comments: false,
+      },
+      sourceMap: true,
+    }),
   ]
 };
