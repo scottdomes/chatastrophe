@@ -1,15 +1,11 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry:  [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    __dirname + "/src/index.js"
-  ],
+  entry:  __dirname + "/src/index.js",
   output: {
-   path: __dirname + "/public",
-   filename: "bundle.js"
+   path: __dirname + "/build",
+   filename: "bundle.js",
+    publicPath: './'
   },
   module: {
     loaders: [
@@ -25,12 +21,10 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
   ],
-  devServer: {
-    contentBase: "./public",
-    historyApiFallback: true,
-    inline: true,
-    hot: true
-  }
 };
