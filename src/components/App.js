@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import LoginContainer from './LoginContainer';
 import './app.css';
 
 class App extends Component {
   render() {
-    return <h1>Hello from React!!</h1>;
+    return <LoginContainer />;
   }
 }
 
