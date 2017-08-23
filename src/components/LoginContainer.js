@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './Header';
 
 class LoginContainer extends Component {
   state = { email: '', password: '' };
@@ -19,10 +20,7 @@ class LoginContainer extends Component {
   render() {
     return (
       <div id="LoginContainer">
-        <div id="Header">
-          <img src="/assets/icon.png" alt="logo" />
-          <h1>Chatastrophe</h1>
-        </div>
+        <Header />
         <form onSubmit={this.handleSubmit}>
           <p>Sign in or sign up by entering your email and password.</p>
           <input
