@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "node scripts/copy_assets.js && node_modules/.bin/webpack --config webpack.config.prod.js",
-    "start": "node_modules/.bin/webpack-dev-server"
+    "start": "node_modules/.bin/webpack-dev-server",
+    "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {
     "babel-core": "^6.25.0",
