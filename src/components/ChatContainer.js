@@ -32,7 +32,13 @@ export default class ChatContainer extends Component {
             Logout
           </button>
         </Header>
-        <div id="message-container" />
+        <div id="message-container">
+          {this.props.messages.map(msg => (
+            <div key={msg.id} className="message">
+              <p>{msg.msg}</p>
+            </div>
+          ))}
+        </div>
         <div id="chat-input">
           <textarea
             placeholder="Add your message..."
