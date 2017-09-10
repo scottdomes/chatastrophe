@@ -25,7 +25,17 @@ class App extends Component {
           this.setState({ messagesLoaded: true });
         }
       });
+    this.listenForInstallBanner();
   }
+
+  listenForInstallBanner = () => {
+    window.addEventListener('beforeinstallprompt', e => {
+      console.log('beforeinstallprompt Event fired');
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      this.deferredPrompt = e;
+    });
+  };
 
   onMessage = snapshot => {
     const messages = Object.keys(snapshot.val()).map(key => {
@@ -47,6 +57,13 @@ class App extends Component {
       .database()
       .ref('messages/')
       .push(data);
+    if (this.deferredPrompt) {
+      this.deferredPrompt.prompt();
+      this.deferredPrompt.userChoice.then(choice => {
+        console.log(choice);
+      });
+      this.deferredPrompt = null;
+    }
   };
 
   render() {
