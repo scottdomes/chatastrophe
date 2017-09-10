@@ -12,10 +12,16 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user });
+        this.listenForMessages();
       } else {
         this.props.history.push('/login');
       }
     });
+    this.listenForMessages();
+    this.listenForInstallBanner();
+  }
+
+  listenForMessages = () => {
     firebase
       .database()
       .ref('/messages')
@@ -25,7 +31,6 @@ class App extends Component {
           this.setState({ messagesLoaded: true });
         }
       });
-    this.listenForInstallBanner();
   }
 
   listenForInstallBanner = () => {
