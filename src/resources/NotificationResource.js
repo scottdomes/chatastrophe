@@ -3,8 +3,9 @@ export default class NotificationResource {
   tokensLoaded = false;
   user = null;
 
-  constructor(messaging) {
+  constructor(messaging, database) {
     this.messaging = messaging;
+    this.database = database;
     this.messaging
       .requestPermission()
       .then(res => {
@@ -31,12 +32,22 @@ export default class NotificationResource {
       if (this.tokensLoaded) {
         const existingToken = this.findExistingToken(res);
         if (existingToken) {
-          // Replace existing toke
+          console.log(existingToken);
         } else {
-          // Create a new one
+          this.registerToken(res);
         }
       }
     });
+  }
+
+  registerToken(token) {
+    firebase
+      .database()
+      .ref('fcmTokens/')
+      .push({
+        token: token,
+        user_id: this.user.uid
+      });
   }
 
   findExistingToken(tokenToSave) {
