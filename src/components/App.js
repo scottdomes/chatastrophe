@@ -18,6 +18,7 @@ class App extends Component {
       if (user) {
         this.setState({ user });
         this.listenForMessages();
+        this.notifications.changeUser(user);
       } else {
         this.props.history.push('/login');
       }

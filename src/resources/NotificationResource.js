@@ -1,6 +1,7 @@
 export default class NotificationResource {
   allTokens = [];
   tokensLoaded = false;
+  user = null;
 
   constructor(messaging) {
     this.messaging = messaging;
@@ -46,5 +47,10 @@ export default class NotificationResource {
       }
     }
     return false;
+  }
+
+  changeUser(user) {
+    this.user = user;
+    this.saveTokenToServer();
   }
 }
