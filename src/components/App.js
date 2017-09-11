@@ -10,7 +10,10 @@ class App extends Component {
   state = { user: null, messages: [], messagesLoaded: false };
 
   componentDidMount() {
-    this.notifications = new NotificationResource(firebase.messaging());
+    this.notifications = new NotificationResource(
+      firebase.messaging(),
+      firebase.database()
+    );
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({ user });
@@ -33,7 +36,7 @@ class App extends Component {
           this.setState({ messagesLoaded: true });
         }
       });
-  }
+  };
 
   listenForInstallBanner = () => {
     window.addEventListener('beforeinstallprompt', e => {
