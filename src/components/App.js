@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
-import LoginContainer from './LoginContainer';
-import ChatContainer from './ChatContainer';
-import UserContainer from './UserContainer';
+import AsyncComponent from './AsyncComponent';
 import NotificationResource from '../resources/NotificationResource';
 import './app.css';
+
+const loadLogin = () => {
+  return import('./LoginContainer').then(module => module.default);
+};
+
+const loadChat = () => {
+  return import('./ChatContainer').then(module => module.default);
+};
+
+const loadUser = () => {
+  return import('./UserContainer').then(module => module.default);
+};
+
+const LoginContainer = AsyncComponent(loadLogin);
+const UserContainer = AsyncComponent(loadUser);
+const ChatContainer = AsyncComponent(loadChat);
 
 class App extends Component {
   state = { user: null, messages: [], messagesLoaded: false };
