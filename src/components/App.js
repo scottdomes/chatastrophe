@@ -39,9 +39,9 @@ class App extends Component {
     });
     this.listenForMessages();
     this.listenForInstallBanner();
-    this.loadChat();
-    this.loadLogin();
-    this.loadUser();
+    loadChat();
+    loadLogin();
+    loadUser();
   }
 
   listenForMessages = () => {
