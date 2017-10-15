@@ -6,7 +6,8 @@ export default class NotificationResource {
   constructor(messaging, database) {
     this.messaging = messaging;
     this.database = database;
-    this.messaging
+    try {
+      this.messaging
       .requestPermission()
       .then(res => {
         console.log('Permission granted');
@@ -14,6 +15,9 @@ export default class NotificationResource {
       .catch(err => {
         console.log('no access', err);
       });
+    } catch(err) {
+      console.log('No notification support.', err);
+    }
     this.setupTokenRefresh();
     this.database.ref('/fcmTokens').on('value', snapshot => {
       this.allTokens = snapshot.val();
